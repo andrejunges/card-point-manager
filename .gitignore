@@ -75,3 +75,5 @@ modules/views/
 # vim Files
 # --------------------
 *.swp
+/.recognizer/server.js
+/.recognizer/gulp/development.js

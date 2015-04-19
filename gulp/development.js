@@ -58,6 +58,7 @@ gulp.task('watch', function () {
   gulp.watch(paths.css, ['csslint']).on('change', plugins.livereload.changed);
   gulp.watch(paths.less, ['less']).on('change', plugins.livereload.changed);
   plugins.livereload.listen({interval: 500});
+
 });
 
 function count(taskName, message) {

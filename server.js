@@ -7,7 +7,6 @@ console.log = function(){
   cl.apply(console,arguments);
 };
 */
-
 // Requires meanio .
 var mean = require('meanio');
 var cluster = require('cluster');
