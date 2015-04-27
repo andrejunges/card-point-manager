@@ -1,0 +1,19 @@
+{
+  "name": "Card Point Manager",
+  "description": "Card Point Manager",
+  "version": "0.1",
+  "private": false,
+  "author": "AndréJunges&&DiegoLima",
+  "contributors": "https://github.com/andrejunges/card-point-manager/graphs/contributors",
+  "mean": "0.4.3",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/andrejunges/card-point-manager.git"
+  },
+  "scripts": {
+  },
+  "dependencies": {
+  },
+  "devDependencies": {
+  }
+}
