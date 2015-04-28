@@ -1,7 +1,6 @@
 {
-  "name": "Card Point Manager",
+  "name": "CardPointManager",
   "description": "Card Point Manager",
-  "version": "0.1",
   "private": false,
   "author": "AndréJunges&&DiegoLima",
   "contributors": "https://github.com/andrejunges/card-point-manager/graphs/contributors",
@@ -10,10 +9,12 @@
     "type": "git",
     "url": "https://github.com/andrejunges/card-point-manager.git"
   },
-  "scripts": {
-  },
-  "dependencies": {
-  },
+  "scripts": {},
+  "dependencies": {},
   "devDependencies": {
+    "gulp": "3.8.11",
+    "gulp-cli": "0.1.5",
+    "gulp-foreach": "^0.1.0",
+    "rimraf": "^2.3.2"
   }
 }
