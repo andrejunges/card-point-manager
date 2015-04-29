@@ -2,9 +2,10 @@ var gulp = require('gulp');
 var gulpBabel = require("gulp-babel");
 var babel = require("babel");
 var rimraf = require('rimraf');
+var uglify = require('gulp-uglify');
 var fs = require('fs');
-var path = require('path');
 var foreach = require('gulp-foreach');
+var Path = require('path');
 
 
 function parsePath(path) {
@@ -35,12 +36,10 @@ gulp.task("es6.es5", function () {
         console.log(file.relative);
         if(file.relative.indexOf('.es6') > 0){
             return stream
-                .pipe(gulpBabel({ externalHelpers: true }))
-                .pipe(gulp.dest(folderDest + file.relative));
+                .pipe(gulpBabel({ externalHelpers: true }));
         }
-
-        return stream.pipe(gulp.dest(folderDest + file.relative));
-    }));
+        return stream;
+    })).pipe(gulp.dest(folderDest));
     //babelFiles
     //    .on('data', function (chunk) {
     //        var src = chunk.relative;
