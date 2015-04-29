@@ -1,9 +1,11 @@
-bower_components/
-node_modules/
-tmp/
-dev/tmp/
-prod/
+/bower_components/
+/node_modules/
+/tmp/
+/dev/tmp/
+/dev/.sass-cache/
+/dev/app/css/*.css
+/dev/app/**/*.js
+/prod/
 
-
+*.map
 *.log
-

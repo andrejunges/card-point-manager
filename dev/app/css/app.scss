@@ -1,6 +1,14 @@
-$mainColor: #333;
+$mainColor: #4b2424;
 
 body
 {
     background: $mainColor;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+h1 {
+    color: $mainColor;
 }
