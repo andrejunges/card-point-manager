@@ -1,7 +1,9 @@
 bower_components/
 node_modules/
+tmp/
 dev/tmp/
-prod/tmp/
 prod/
 
+
 *.log
+
