@@ -32,11 +32,18 @@ gulp.task("es6.es5", function () {
     var files = gulp.src(['dev/**']),
         folderDest = './prod/';
 
-    files.pipe(foreach(function(stream, file){
-        console.log(file.relative);
-        if(file.relative.indexOf('.es6') > 0){
+    files.pipe(foreach(function (stream, file) {
+        'use strict';
+        let ext = parsePath(file.path).extname;
+
+        if (ext == '.es6') {
             return stream
-                .pipe(gulpBabel({ externalHelpers: true }));
+                .pipe(gulpBabel({
+                    externalHelpers: true
+                }))
+                .pipe(uglify());
+        } else if (ext == '.js') {
+            return stream.pipe(uglify());
         }
         return stream;
     })).pipe(gulp.dest(folderDest));
