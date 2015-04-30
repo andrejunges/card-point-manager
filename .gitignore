@@ -3,6 +3,7 @@
 /tmp/
 /dev/tmp/
 /dev/.sass-cache/
+/dev/bower_components/
 /dev/app/css/*.css
 /dev/app/*.js
 /dev/app/**/*.js

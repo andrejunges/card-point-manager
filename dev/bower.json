@@ -1,0 +1,27 @@
+{
+    "name": "CardPointManager",
+    "version": "0.1.0",
+    "homepage": "https://github.com/andrejunges/card-point-manager",
+    "authors": [
+    "AndreJunges <andrejunges@outlook.com>",
+    "DiegoMartins <dml>"
+  ],
+    "description": "CPM",
+    "keywords": [
+    "es6",
+    "babel",
+    "react",
+    "angularjs"
+  ],
+    "license": "MIT",
+    "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+    "devDependencies": {
+        "bootstrap": "~3.3.4"
+    }
+}

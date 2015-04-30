@@ -10,7 +10,9 @@
     "url": "https://github.com/andrejunges/card-point-manager.git"
   },
   "scripts": {},
-  "dependencies": {},
+  //"dependencies": {
+  //    "bootstrap": "~3.3.4"
+  //},
   "devDependencies": {
     "gulp": "3.8.11",
     "gulp-babel": "^5.1.0",
