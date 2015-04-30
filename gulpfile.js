@@ -1,21 +1,14 @@
-var gulp = require('gulp');
-var gulpBabel = require("gulp-babel");
-var babel = require("babel");
-var rimraf = require('rimraf');
-var uglify = require('gulp-uglify');
-var fs = require('fs');
-var foreach = require('gulp-foreach');
-var Path = require('path');
+var gulp = require('gulp'),
+    gulpBabel = require("gulp-babel"),
+    babel = require("babel"),
+    rimraf = require('rimraf'),
+    uglify = require('gulp-uglify'),
+    fs = require('fs'),
+    foreach = require('gulp-foreach'),
+    path = require('path'),
+    watch = require('gulp-watch'),
+    sass = require('gulp-sass');
 
-
-function parsePath(path) {
-    var extname = Path.extname(path);
-    return {
-        dirname: Path.dirname(path),
-        basename: Path.basename(path, extname),
-        extname: extname
-    };
-}
 
 gulp.task("clean", function () {
     return rimraf.sync('prod/**');
@@ -28,39 +21,35 @@ gulp.task("helpers", function () {
         });
 });
 
-gulp.task("es6.es5", function () {
-    var files = gulp.src(['dev/**']),
+gulp.task("publish", function () {
+    var files = gulp.src(['dev/**', '!dev/**.es6', '!dev/**.scss']),
         folderDest = './prod/';
 
     files.pipe(foreach(function (stream, file) {
         'use strict';
-        let ext = parsePath(file.path).extname;
+        let ext = path.extname(file.path);
 
-        if (ext == '.es6') {
-            return stream
-                .pipe(gulpBabel({
-                    externalHelpers: true
-                }))
-                .pipe(uglify());
-        } else if (ext == '.js') {
+        if (ext == '.js' || ext == '.css') {
             return stream.pipe(uglify());
         }
         return stream;
     })).pipe(gulp.dest(folderDest));
-    //babelFiles
-    //    .on('data', function (chunk) {
-    //        var src = chunk.relative;
-    //        console.log(src);
-    //        gulp.src('dev/' + src)
-    //            .pipe(gulpBabel({
-    //                externalHelpers: true
-    //            }))
-    //            //.pipe(minify())
-    //            .pipe(gulp.dest('prod/' + src))
-    //    })
-    //    .on('end', function (chunk) {
-    //        console.log(chunk, "end of the line here");
-    //    });
 });
 
-gulp.task('default', ['es6.es5']);
+gulp.task('devEnv', function () {
+    watch('dev/app/css/*.scss', function () {
+        gulp.src('dev/app/css/*.scss')
+            .pipe(sass())
+            .pipe(gulp.dest('dev/app/css/'));
+    });
+
+    watch('dev/app/**/*.es6', function () {
+        gulp.src('dev/app/**/*.es6')
+            .pipe(gulpBabel({
+                externalHelpers: true
+            }))
+            .pipe(gulp.dest('dev/app/'));
+    });
+});
+
+gulp.task('default', ['publish']);

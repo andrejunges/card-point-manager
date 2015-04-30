@@ -4,6 +4,7 @@
 /dev/tmp/
 /dev/.sass-cache/
 /dev/app/css/*.css
+/dev/app/*.js
 /dev/app/**/*.js
 /prod/
 
