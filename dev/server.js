@@ -1,6 +1,6 @@
-let fs = require('fs');
-let options = {};
-let env = process.env.NODE_ENV || 'development';
+var fs = require('fs'),
+    options = {},
+    env = process.env.NODE_ENV || 'development';
 
 // options.ip = '127.0.0.1';
 // options.port = parseInt(process.argv[2]);
@@ -117,7 +117,7 @@ if (env == 'development') {
             else arr.push("restart");
             arr.push("debugging");
             arr.push(port);
-            app = fork(path.join(directory, "debug.js"), arr);
+            app = fork(path.join(directory, "server.js"), arr);
             app.on("message", function (msg) {
                 if (msg.substring(0, 5) === "name:") {
                     process.title = "debug: " + msg.substring(6);
