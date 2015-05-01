@@ -40,10 +40,16 @@ gulp.task("publish", function () {
 });
 
 gulp.task('bassets', function () {
-    var dest = 'dev/public/js';
-    gulp.src(mainBowerFiles())
+    var dest = 'dev/public/';
+    gulp.src(mainBowerFiles({ includeDev: true }))
         .pipe(gulpFilter('*.js'))
-        .pipe(gulp.dest(dest));
+        .pipe(uglify())
+        .pipe(gulp.dest(dest + 'js'));
+
+     gulp.src(mainBowerFiles({ includeDev: true }))
+        .pipe(gulpFilter('*.css'))
+        //.pipe(uglify())
+        .pipe(gulp.dest(dest + 'css'));
 });
 
 gulp.task('devEnv', function () {
