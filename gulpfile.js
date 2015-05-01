@@ -1,3 +1,4 @@
+/* global __dirname */
 /* global process */
 var gulp = require('gulp'),
     gulpBabel = require("gulp-babel"),
@@ -41,7 +42,7 @@ gulp.task("publish", function () {
 
 gulp.task('bassets', function () {
     var dest = 'dev/public/js';
-    gulp.src(mainBowerFiles())
+    gulp.src(mainBowerFiles({includeDev:true}))
         .pipe(gulpFilter('*.js'))
         .pipe(gulp.dest(dest));
 });
