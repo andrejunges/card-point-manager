@@ -1,3 +1,4 @@
+/* global process */
 var gulp = require('gulp'),
     gulpBabel = require("gulp-babel"),
     babel = require("babel"),
@@ -7,7 +8,9 @@ var gulp = require('gulp'),
     foreach = require('gulp-foreach'),
     path = require('path'),
     watch = require('gulp-watch'),
-    sass = require('gulp-sass');
+    sass = require('gulp-sass'),
+    gulpFilter = require('gulp-filter'),
+    mainBowerFiles = require('main-bower-files');
 
 
 gulp.task("clean", function () {
@@ -22,18 +25,25 @@ gulp.task("helpers", function () {
 });
 
 gulp.task("publish", function () {
-    var files = gulp.src(['dev/**', '!dev/**.es6', '!dev/**.scss']),
+    var files = gulp.src(['dev/**', '!dev/**/*.es6', '!dev/**/*.scss']),
         folderDest = './prod/';
 
     files.pipe(foreach(function (stream, file) {
         'use strict';
-        let ext = path.extname(file.path);
+        var ext = path.extname(file.path);
 
         if (ext == '.js' || ext == '.css') {
             return stream.pipe(uglify());
         }
         return stream;
     })).pipe(gulp.dest(folderDest));
+});
+
+gulp.task('bassets', function () {
+    var dest = 'dev/public/js';
+    gulp.src(mainBowerFiles())
+        .pipe(gulpFilter('*.js'))
+        .pipe(gulp.dest(dest));
 });
 
 gulp.task('devEnv', function () {
@@ -52,4 +62,9 @@ gulp.task('devEnv', function () {
     });
 });
 
-gulp.task('default', ['publish']);
+var env = process.env.NODE_ENV || 'development';
+if (env == "development") {
+    gulp.task('default', ['devEnv']);
+} else {
+    gulp.task('default', ['publish']);
+}
