@@ -11,7 +11,8 @@ var gulp = require('gulp'),
     watch = require('gulp-watch'),
     sass = require('gulp-sass'),
     gulpFilter = require('gulp-filter'),
-    mainBowerFiles = require('main-bower-files');
+    mainBowerFiles = require('main-bower-files'),
+    nodemon = require('gulp-nodemon');
 
 
 gulp.task("clean", function () {
@@ -42,7 +43,9 @@ gulp.task("publish", function () {
 
 gulp.task('bassets', function () {
     var dest = 'dev/public/js';
-    gulp.src(mainBowerFiles({includeDev:true}))
+    gulp.src(mainBowerFiles({
+            includeDev: true
+        }))
         .pipe(gulpFilter('*.js'))
         .pipe(gulp.dest(dest));
 });

@@ -1,18 +1,18 @@
 @{meta('Card Point Manager', 'description', 'keywords')}
-
-@{ng('angular', 'resource', 'route')}
+<!-- add scripts to head -->
+@{Scripts('angular', 'angular-resource', 'angular-route')}
 
 <!-- /app/css/ -->
-@{ngStyle('app')}
+@{Styles('app')}
 
 <!-- cdnjs -->
 @{ngLocale('en-us')}
 
 <!-- /app/controllers/ -->
 @{ngController('home', 'user')}
-
 <!DOCTYPE html>
 <html ng-app="app">
+
 <head>
     @{meta}
     <meta charset="utf-8" />
@@ -20,10 +20,14 @@
     <meta name="format-detection" content="telephone=no" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="robots" content="all,follow" />
+    <!-- render head includes -->
     @{head}
+    <!-- add favicon -->
     @{favicon('favicon.ico')}
 </head>
+
 <body>
     @{body}
 </body>
+
 </html>
