@@ -1,4 +1,3 @@
-/* global process */
 var gulp = require('gulp'),
     gulpBabel = require("gulp-babel"),
     babel = require("babel"),
@@ -10,7 +9,8 @@ var gulp = require('gulp'),
     watch = require('gulp-watch'),
     sass = require('gulp-sass'),
     gulpFilter = require('gulp-filter'),
-    mainBowerFiles = require('main-bower-files');
+    mainBowerFiles = require('main-bower-files'),
+    nodemon = require('gulp-nodemon');
 
 
 gulp.task("clean", function () {
@@ -43,12 +43,10 @@ gulp.task('bassets', function () {
     var dest = 'dev/public/';
     gulp.src(mainBowerFiles({ includeDev: true }))
         .pipe(gulpFilter('*.js'))
-        .pipe(uglify())
         .pipe(gulp.dest(dest + 'js'));
 
      gulp.src(mainBowerFiles({ includeDev: true }))
         .pipe(gulpFilter('*.css'))
-        //.pipe(uglify())
         .pipe(gulp.dest(dest + 'css'));
 });
 
