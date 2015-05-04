@@ -4,7 +4,10 @@
 
 exports.name = 'angular.js';
 exports.version = '1.01';
-exports.options = { 'angular-version': '1.3.15', 'angular-i18n-version': '1.3.15' };
+exports.options = {
+    'angular-version': '1.3.15',
+    'angular-i18n-version': '1.3.15'
+};
 
 var fs = require('fs');
 var EXTENSION_JS = '.js';
@@ -14,7 +17,7 @@ var REPOSITORY_ANGULAR_COMMON = '$angular-common';
 var REPOSITORY_ANGULAR_CONTROLLER = '$angular-controller';
 var REPOSITORY_ANGULAR_OTHER = '$angular-other';
 
-exports.install = function(framework, options) {
+exports.install = function (framework, options) {
 
     Utils.extend(exports.options, options, true);
 
@@ -24,7 +27,7 @@ exports.install = function(framework, options) {
         @name {String or String Array} :: optional, example: route or resource
         return {String}
     */
-    framework.helpers.ng = function(name) {
+    framework.helpers.ng = function (name) {
         var self = this;
 
         var length = arguments.length;
@@ -68,7 +71,7 @@ exports.install = function(framework, options) {
     };
 
 
-    framework.helpers.ngCommon = function(name) {
+    framework.helpers.ngCommon = function (name) {
 
         var self = this;
         var length = arguments.length;
@@ -98,7 +101,7 @@ exports.install = function(framework, options) {
         return '';
     };
 
-    framework.helpers.ngLocale = function(name) {
+    framework.helpers.ngLocale = function (name) {
 
         var self = this;
         var length = arguments.length;
@@ -140,7 +143,7 @@ exports.install = function(framework, options) {
         @name {String or String Array}
         return {String}
     */
-    framework.helpers.ngController = function(name) {
+    framework.helpers.ngController = function (name) {
 
         var self = this;
 
@@ -179,7 +182,7 @@ exports.install = function(framework, options) {
         @name {String}
         return {String}
     */
-    framework.helpers.ngTemplate = function(name, id) {
+    framework.helpers.ngTemplate = function (name, id) {
 
         var self = this;
 
@@ -217,7 +220,7 @@ exports.install = function(framework, options) {
         @name {String}
         return {String}
     */
-    framework.helpers.ngDirective = function(name) {
+    framework.helpers.ngDirective = function (name) {
 
         var self = this;
 
@@ -254,7 +257,7 @@ exports.install = function(framework, options) {
         @name {String}
         return {String}
     */
-    framework.helpers.ngStyle = function(name) {
+    framework.helpers.ngStyle = function (name) {
 
         var self = this;
         var length = arguments.length;
@@ -284,7 +287,7 @@ exports.install = function(framework, options) {
         @name {String}
         return {String}
     */
-    framework.helpers.ngService = function(name) {
+    framework.helpers.ngService = function (name) {
 
         var self = this;
 
@@ -322,7 +325,7 @@ exports.install = function(framework, options) {
         @name {String}
         return {String}
     */
-    framework.helpers.ngFilter = function(name) {
+    framework.helpers.ngFilter = function (name) {
 
         var self = this;
 
@@ -360,7 +363,7 @@ exports.install = function(framework, options) {
         @name {String}
         return {String}
     */
-    framework.helpers.ngResource = function(name) {
+    framework.helpers.ngResource = function (name) {
 
         var self = this;
 
@@ -393,7 +396,7 @@ exports.install = function(framework, options) {
         return '';
     };
 
-    framework.helpers.ngInclude = function(name) {
+    framework.helpers.ngInclude = function (name) {
         var self = this;
 
         if (name.lastIndexOf(EXTENSION_JS) === -1)
@@ -405,7 +408,7 @@ exports.install = function(framework, options) {
     framework.on('controller-render-head', event_render_head);
 };
 
-exports.uninstall = function(framework) {
+exports.uninstall = function (framework) {
     delete framework.helpers.ng;
     delete framework.helpers.ngInclude;
     delete framework.helpers.ngResource;

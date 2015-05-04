@@ -7,6 +7,7 @@ var fs = require('fs'),
 // options.config = { name: 'total.js' };
 // options.https = { key: fs.readFileSync('keys/agent2-key.pem'), cert: fs.readFileSync('keys/agent2-cert.pem')};
 // options.sleep = 3000;
+//need to be in realese for debug :)
 if (env == 'development') {
     var isDebugging = process.argv.indexOf("debugging") !== -1;
     var directory = process.cwd();

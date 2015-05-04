@@ -8,6 +8,11 @@
 /dev/app/*.js
 /dev/app/**/*.js
 /prod/
+/.idea/
+/.settings/
+/dev/public/js/
+/dev/public/css/
 
 *.map
 *.log
+*.pid

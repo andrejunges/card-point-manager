@@ -1,7 +1,5 @@
 $mainColor: #4b2424;
-
-body
-{
+body {
     background: $mainColor;
 }
 
@@ -9,7 +7,24 @@ body
     box-sizing: border-box;
 }
 
-h1 {
-    color: $mainColor;
-    font-size: 48px;
+.span-block {
+    width: 100%;
+    display: inline-block;
+}
+
+.login-section {
+    width: 100%;
+    text-align: center;
+    padding: 25px;
+}
+
+.login-section > div {
+    @extend .span-block;
+    max-width: 500px;
+    text-align: left;
+}
+
+.login-section .form-group
+{
+    margin-bottom: 10px;
 }
