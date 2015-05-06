@@ -3,7 +3,6 @@
 // ================================================
 
 framework.onAuthorization = function (req, res, flags, callback) {
-
     var self = this,
         cookie = req.cookie(self.config.cookie);
 
@@ -26,28 +25,26 @@ framework.onAuthorization = function (req, res, flags, callback) {
         return;
     }
 
-    var db = self.database('users');
-
-    // find the user in database
-    db.one('doc.id === {0}'.format(obj.id), function (user) {
-
-        if (user === null) {
+    var UserSchema = MODEL('user').Schema;
+    UserSchema.find({
+        _id: obj.id
+    }, function (err, users) {
+        if (users.length === 0) {
             callback(false);
             return;
         }
 
-        self.cache.add('user_' + user.id, user, new Date().add('m', 5));
+        self.cache.add('user_' + users[0].id, users[0], new Date().add('h', 1));
         callback(true, user);
     });
-
 };
 
 
 framework.onValidation = function (name, value) {
     switch (name) {
-    case 'LoginName':
-        return utils.isEmail(value);
-    case 'LoginPassword':
-        return value.length > 0;
+        case 'LoginName':
+            return utils.isEmail(value);
+        case 'LoginPassword':
+            return value.length > 0;
     };
 }

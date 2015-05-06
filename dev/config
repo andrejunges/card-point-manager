@@ -2,6 +2,7 @@ name                            : Card Point Manager
 author                          : AndréJunges&&DiegoLima
 version                         : 1.02
 secret                          : secret-key-for-web
+cookie                          : user-auth
 
 // Mail settings
 mail.smtp                       : smtp.yourwebsite.com

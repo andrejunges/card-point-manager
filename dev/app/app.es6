@@ -8,7 +8,9 @@ app.config(['$routeProvider',
                 controller: 'UserCtrl'
             })
             .otherwise({
-                redirectTo: '/'
+                redirectTo: '/',
+                templateUrl: 'app.html',
+                controller: 'HomeCtrl'
             });
   }]);
 

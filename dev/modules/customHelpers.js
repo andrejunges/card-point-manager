@@ -46,7 +46,7 @@ exports.install = function (framework, options) {
                 for (var i = 0; i < leng; i++)
                     framework.helpers.Styles.call(self, name[i]);
             }
-            return;
+            return '';
         }
 
         if (!self.repository['$head']) {
