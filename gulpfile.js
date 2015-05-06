@@ -12,7 +12,6 @@ var gulp = require('gulp'),
     mainBowerFiles = require('main-bower-files'),
     nodemon = require('gulp-nodemon');
 
-
 gulp.task("clean", function () {
     return rimraf.sync('prod/**');
 });
@@ -41,11 +40,15 @@ gulp.task("publish", function () {
 
 gulp.task('bassets', function () {
     var dest = 'dev/public/';
-    gulp.src(mainBowerFiles({ includeDev: true }))
+    gulp.src(mainBowerFiles({
+            includeDev: true
+        }))
         .pipe(gulpFilter('*.js'))
         .pipe(gulp.dest(dest + 'js'));
 
-     gulp.src(mainBowerFiles({ includeDev: true }))
+    gulp.src(mainBowerFiles({
+            includeDev: true
+        }))
         .pipe(gulpFilter('*.css'))
         .pipe(gulp.dest(dest + 'css'));
 });
