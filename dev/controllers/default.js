@@ -13,7 +13,6 @@ function view_logged() {
 
 function view_homepage() {
     var self = this;
-    debugger
     self.view('login', {
         LoginName: ''
     });
@@ -21,16 +20,8 @@ function view_homepage() {
 
 function json_homepage() {
     var self = this,
-        errorBuilder = self.validate(self.post, ['LoginName', 'LoginPassword']);
-
-    debugger
-    if (self.user !== null)
-        errorBuilder.add('Logged');
-
-    if (errorBuilder.hasError()) {
-        self.json(errorBuilder);
-        return;
-    }
+        user = self.post.LoginName,
+        pw = self.post.LoginPassword;
 
     var db = self.database('User');
     var filter = function (o) {
