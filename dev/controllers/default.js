@@ -1,20 +1,23 @@
 exports.install = function () {
     framework.route('/', view_logged, ['authorize']);
-    framework.route('/', view_homepage);
+    framework.route('/', view_log_in);
     framework.route('/', json_homepage, ['xhr', 'post']);
     framework.route('/logout/', logout, ['authorize', 'get']);
+    framework.route('/home', view_home, ['authorize']);
 };
-
 var password = require('password-hash-and-salt');
 
 function view_logged() {
     var self = this;
-    //    self.view('login');
-    //self.plain('You are logged as {0}. To unlogged remove cookie __user or click http://{1}:{2}/logout/'.format(self.user.email, framework.ip, framework.port));
     self.view('app');
 }
 
-function view_homepage() {
+function view_home() {
+    var self = this;
+    self.view('home');
+}
+
+function view_log_in() {
     var self = this;
     self.view('login', {
         LoginName: ''

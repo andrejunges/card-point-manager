@@ -3,5 +3,5 @@ export function createScript(url) {
 }
 
 export function createStyle(url) {
-    return '<link rel="stylesheet" href="' + url + '">'
+    return '<link rel="stylesheet" href="' + url + '">';
 }

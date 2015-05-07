@@ -8,10 +8,8 @@ app.config(['$routeProvider',
                 controller: 'UserCtrl'
             })
             .otherwise({
-                redirectTo: '/',
-                templateUrl: 'app.html',
+                templateUrl: '/home',
                 controller: 'HomeCtrl'
             });
   }]);
-
 var appControllers = angular.module('appControllers', []);
