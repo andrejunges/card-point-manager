@@ -23,17 +23,11 @@ exports.install = function (framework, options) {
             self.repository['$head'] = '';
         }
         if (name) {
-            var path = 'js/' + name;
+            var path = name;
             if (path.lastIndexOf(extJs) === -1) {
                 path += extJs;
             }
-            var resolvedPath = pathN.resolve(__dirname + '/../public/' + path);
-
-            if (fs.existsSync(resolvedPath)) {
-                self.repository['$head'] += lib.createScript(path);
-            } else {
-                console.warn(resolvedPath, 'not found!!');
-            }
+            self.repository['$head'] += lib.createScript(path);
         }
         return '';
     }

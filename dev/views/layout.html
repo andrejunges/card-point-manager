@@ -1,13 +1,8 @@
 @{meta('Card Point Manager', 'description', 'keywords')}
 <!-- add scripts to head -->
-@{Scripts('jquery', 'angular', 'angular-resource', 'angular-route', 'app')}
-
+@{Scripts('js/jquery', 'js/angular', 'js/angular-resource', 'js/angular-route', 'app')}
 <!-- /app/css/ -->
 @{Styles(['bootstrap', 'app'])}
-
-<!-- cdnjs -->
-@{ngLocale('en-us')}
-
 <!-- /app/controllers/ -->
 @{ngController('home', 'user')}
 
