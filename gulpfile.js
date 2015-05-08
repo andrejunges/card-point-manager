@@ -53,6 +53,18 @@ gulp.task('bassets', function () {
         .pipe(gulp.dest(dest + 'css'));
 });
 
+gulp.task('forceDevEnv', function () {
+    gulp.src('dev/app/css/*.scss')
+        .pipe(sass())
+        .pipe(gulp.dest('dev/app/css/'));
+
+    gulp.src('dev/app/**/*.es6')
+        .pipe(gulpBabel({
+            externalHelpers: true
+        }))
+        .pipe(gulp.dest('dev/app/'));
+});
+
 gulp.task('devEnv', function () {
     watch('dev/app/css/*.scss', function () {
         gulp.src('dev/app/css/*.scss')
