@@ -7,6 +7,7 @@ exports.install = function () {
 };
 var password = require('password-hash-and-salt');
 
+
 function view_logged() {
     var self = this;
     self.view('app');
