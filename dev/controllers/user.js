@@ -1,8 +1,19 @@
 exports.install = function () {
-    framework.route('/user/new', json_get_new_user);
-    framework.route('/users', json_get_users);
+  framework.route('/user/new', json_get_new_user, ['authorize']);
+  framework.route('/users/fetch', json_get_users, ['authorize']);
+  framework.route('/users', view_users, ['authorize']);
 };
 
+/*
+	Description: view users
+	Method: GET
+	Output: html
+*/
+
+function view_users() {
+  var self = this;
+  self.view('users');
+}
 
 /*
 	Description: Get users
@@ -11,11 +22,11 @@ exports.install = function () {
 */
 
 function json_get_users() {
-    var self = this,
-        UserSchema = MODEL('user').Schema;
-    UserSchema.find(function (err, docs) {
-        self.json(docs);
-    });
+  var self = this,
+    UserSchema = MODEL('user').Schema;
+  UserSchema.find(function (err, docs) {
+    self.json(docs);
+  });
 }
 
 /*
@@ -24,11 +35,11 @@ function json_get_users() {
 	Output: JSON
 */
 function json_get_new_user() {
-    var self = this;
-    self.json({
-        Name: '',
-        Login: '',
-        Password: '',
-        Email: ''
-    });
+  var self = this;
+  self.json({
+    Name: '',
+    Login: '',
+    Password: '',
+    Email: ''
+  });
 }

@@ -1,29 +1,29 @@
 @{meta('Card Point Manager', 'description', 'keywords')}
 <!-- add scripts to head -->
-@{Scripts('js/jquery', 'js/angular', 'js/angular-resource', 'js/angular-route', 'app')}
+@{Scripts('js/jquery', 'js/angular', 'js/angular-resource', 'js/angular-route','js/ui-grid.min', 'app')}
 <!-- /app/css/ -->
-@{Styles(['bootstrap', 'app'])}
+@{Styles(['bootstrap','ui-grid.min', 'app'])}
 <!-- /app/controllers/ -->
 @{ngController('home', 'user')}
 
 <!DOCTYPE html>
-<html ng-app="app">
+<html ng-app="app" lang="en">
 
 <head>
-    @{meta}
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=11" />
-    <meta name="format-detection" content="telephone=no" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="robots" content="all,follow" />
-    <!-- render head includes -->
-    @{head}
-    <!-- add favicon -->
-    @{favicon('favicon.ico')}
+  @{meta}
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=11" />
+  <meta name="format-detection" content="telephone=no" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="all,follow" />
+  <!-- render head includes -->
+  @{head}
+  <!-- add favicon -->
+  @{favicon('favicon.ico')}
 </head>
 
 <body>
-    @{body}
+  @{body}
 </body>
 
 </html>
