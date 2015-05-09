@@ -2,6 +2,7 @@
 appControllers.controller('UserCtrl', ['$scope', '$http', function ($scope, $http) {
   $scope.users_grid = {
     data: [],
+    height: 'auto',
     columnDefs: [
       {
         field: "Name",

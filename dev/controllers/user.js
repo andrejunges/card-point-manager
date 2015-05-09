@@ -12,7 +12,6 @@ exports.install = function () {
 
 function view_users() {
   var self = this;
-  console.log(self)
   self.view('users');
 }
 
