@@ -12,6 +12,12 @@ body {
     display: inline-block;
 }
 
+.title-app {
+    @extend .span-block;
+    text-align: center;
+}
+
+
 .login-section {
     width: 100%;
     text-align: center;
