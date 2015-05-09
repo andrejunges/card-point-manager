@@ -1,9 +1,19 @@
-"use strict";
 // app is defined in /app/app.js
 appControllers.controller('UserCtrl', ['$scope', '$http', function ($scope, $http) {
-  $scope.users = [];
+  $scope.users_grid = {
+    data: [],
+    columnDefs: [
+      {
+        field: "Name",
+        displayName: "Nome"
+                    },
+      {
+        field: "Login",
+        displayName: "Login"
+                    }]
+  };
   $http.get('/users/fetch').success(function (data, status, headers, config) {
-    $scope.users = data;
+    $scope.users_grid.data = data;
   }).
   error(function (data, status, headers, config) {
     console.log(data, 'data users');
