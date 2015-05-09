@@ -1,5 +1,5 @@
 "use strict";
-var app = angular.module('app', ['ngRoute', 'appControllers', 'ui.grid']);
+var app = angular.module('app', ['ngRoute', 'ngReactGrid', 'appControllers']);
 app.config(['$routeProvider',
   function ($routeProvider) {
     $routeProvider.
@@ -12,6 +12,5 @@ app.config(['$routeProvider',
         controller: 'HomeCtrl'
       });
   }]);
-
 
 var appControllers = angular.module('appControllers', []);
