@@ -12,6 +12,7 @@ exports.install = function () {
 
 function view_employees() {
   var self = this;
+  self.layout(null);
   self.view('employees');
 }
 
@@ -26,7 +27,7 @@ function json_get_employees() {
     employeeSchema = MODEL('employee').Schema;
 
   employeeSchema.find(function (err, docs) {
-      console.log(docs);
+    console.log(docs);
     self.json(docs);
   });
 }

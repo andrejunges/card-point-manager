@@ -17,6 +17,7 @@
     "babel": "^5.1.13",
     "gulp": "3.8.11",
     "gulp-babel": "^5.1.0",
+    "gulp-browserify": "^0.5.1",
     "gulp-cli": "0.1.5",
     "gulp-filter": "^2.0.2",
     "gulp-foreach": "^0.1.0",

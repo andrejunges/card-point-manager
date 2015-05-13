@@ -11,6 +11,7 @@ var gulp = require('gulp'),
   gulpFilter = require('gulp-filter'),
   mainBowerFiles = require('main-bower-files'),
   react = require('gulp-react'),
+  browserify = require('gulp-browserify'),
   nodemon = require('gulp-nodemon');
 
 gulp.task("clean", function () {
@@ -69,6 +70,15 @@ gulp.task('forceDevEnv', function () {
   gulp.src('dev/public/react-ui/**')
     .pipe(react())
     .pipe(gulp.dest('dev/public/react-ui'));
+
+  //entry point
+  gulp.src('dev/app/controllers/entry.js')
+    .pipe(browserify({
+      insertGlobals: false,
+      debug: false
+    }))
+    .pipe(gulp.dest('dev/app/controllers'));
+
 });
 
 gulp.task('devEnv', function () {
@@ -85,6 +95,23 @@ gulp.task('devEnv', function () {
       }))
       .pipe(gulp.dest('dev/app/'));
   });
+
+  watch('dev/app/controllers/entry.js', function () {
+    gulp.src('dev/app/controllers/entry.js')
+      .pipe(browserify({
+        insertGlobals: false,
+        debug: false
+      }))
+      .pipe(gulp.dest('dev/app/controllers'));
+  });
+
+  watch('dev/public/react-ui/*.jsx', function () {
+    //compile jsx to js
+    gulp.src('dev/public/react-ui/**')
+      .pipe(react())
+      .pipe(gulp.dest('dev/public/react-ui'));
+  });
+
 });
 
 var env = process.env.NODE_ENV || 'development';

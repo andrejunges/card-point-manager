@@ -12,6 +12,8 @@ exports.install = function () {
 
 function view_users() {
   var self = this;
+  //same as partion view
+  self.layout(null);
   self.view('users');
 }
 
