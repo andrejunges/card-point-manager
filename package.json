@@ -15,6 +15,7 @@
   },
   "devDependencies": {
     "babel": "^5.1.13",
+    "blacklist": "^1.1.2",
     "gulp": "3.8.11",
     "gulp-babel": "^5.1.0",
     "gulp-browserify": "^0.5.1",
@@ -28,6 +29,7 @@
     "gulp-watch": "^4.2.4",
     "main-bower-files": "^2.7.0",
     "mongoose": "^4.0.2",
-    "rimraf": "^2.3.2"
+    "rimraf": "^2.3.2",
+    "xtend": "^4.0.0"
   }
 }

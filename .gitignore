@@ -12,7 +12,6 @@
 /.settings/
 /dev/public/js/
 /dev/public/css/
-/dev/public/react-ui/*.js
 
 *.map
 *.log

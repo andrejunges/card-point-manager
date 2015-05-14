@@ -9,5 +9,6 @@ var userSchema = mongoose.Schema({
         default: Date.now
     }
 });
+
 exports.name = 'user';
 exports.Schema = mongoose.model('User', userSchema);

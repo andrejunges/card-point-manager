@@ -71,6 +71,13 @@ gulp.task('forceDevEnv', function () {
     .pipe(react())
     .pipe(gulp.dest('dev/public/react-ui'));
 
+  gulp.src('dev/public/lib/lib-entry.js')
+    .pipe(browserify({
+      insertGlobals: false,
+      debug: false
+    }))
+    .pipe(gulp.dest('dev/public/lib/lib-entry.js'));
+
   //entry point
   gulp.src('dev/app/controllers/entry.js')
     .pipe(browserify({

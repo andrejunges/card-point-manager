@@ -23,12 +23,11 @@ function view_users() {
 	Output: JSON
 */
 
-function json_get_users() {
+function* json_get_users() {
   var self = this,
     UserSchema = MODEL('user').Schema;
-  UserSchema.find(function (err, docs) {
-    self.json(docs);
-  });
+  var users = yield sync(global.genFind.call(UserSchema))();
+  self.json(users);
 }
 
 /*
