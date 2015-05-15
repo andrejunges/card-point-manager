@@ -12,7 +12,8 @@ var gulp = require('gulp'),
   mainBowerFiles = require('main-bower-files'),
   react = require('gulp-react'),
   browserify = require('gulp-browserify'),
-  nodemon = require('gulp-nodemon');
+  nodemon = require('gulp-nodemon'),
+  livereload = require('gulp-livereload');
 
 gulp.task("clean", function () {
   return rimraf.sync('prod/**');
@@ -111,7 +112,11 @@ gulp.task('devEnv', function () {
       .pipe(react())
       .pipe(gulp.dest('dev/public/react-ui'));
   });
+});
 
+gulp.task('watchDevEnv', function() {
+  livereload.listen();
+  gulp.watch('less/*.less', ['forceDevEnv']);
 });
 
 var env = process.env.NODE_ENV || 'development';
