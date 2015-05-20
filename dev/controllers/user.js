@@ -1,11 +1,15 @@
 exports.install = function () {
     framework.route('/user/new', json_get_new_user, ['authorize']);
+    framework.route('/user/save', json_save_user, ['authorize', 'json']);
+
     framework.route('/user/{id}', json_get_user, ['authorize', 'xhr', 'post']);
     framework.route('/user/form', view_user_form, ['authorize']);
 
     framework.route('/users/fetch', json_get_users, ['authorize']);
     framework.route('/users', view_users, ['authorize']);
 };
+
+var password = require('password-hash-and-salt');
 
 /*
 	Description: view users
@@ -78,3 +82,29 @@ function json_get_new_user() {
         Email: ''
     });
 }
+
+/*
+	Description: save user
+	Method: post
+	Output: JSON
+*/
+
+function json_save_user() {
+    var self = this,
+        userSchema = MODEL('user').Schema,
+        userJson = this.body,
+        userNew = new userSchema(userJson);
+
+    password(userNew.Password).hash(function (error, hash) {
+        userNew.Password = hash;
+        if (error) {
+            self.json(error);
+        }
+        userNew.save(function (err, user_db) {
+            if (err) {
+                self.json(err);
+            }
+            self.json(user_db);
+        });
+    });
+};
