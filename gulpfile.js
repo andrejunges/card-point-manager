@@ -72,6 +72,13 @@ gulp.task('forceDevEnv', function () {
     .pipe(react())
     .pipe(gulp.dest('dev/public/react-ui'));
 
+  gulp.src('dev/public/lib/lib-entry.js')
+    .pipe(browserify({
+      insertGlobals: false,
+      debug: false
+    }))
+    .pipe(gulp.dest('dev/public/lib/lib-entry.js'));
+
   //entry point
   gulp.src('dev/app/controllers/entry.js')
     .pipe(browserify({
@@ -116,7 +123,7 @@ gulp.task('devEnv', function () {
 
 gulp.task('watchDevEnv', function() {
   livereload.listen();
-  gulp.watch('less/*.less', ['forceDevEnv']);
+  gulp.watch('dev/app/**', ['forceDevEnv']);
 });
 
 var env = process.env.NODE_ENV || 'development';

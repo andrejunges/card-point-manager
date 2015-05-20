@@ -1,5 +1,5 @@
 // app is defined in /app/app.js
-appControllers.controller('UserCtrl', ['$scope', '$http', function ($scope, $http) {
+appControllers.controller('UserCtrl', ['$scope', '$http', '$location', function ($scope, $http, $location) {
     $scope.users_grid = {
         data: [],
         height: 'auto',
@@ -10,8 +10,8 @@ appControllers.controller('UserCtrl', ['$scope', '$http', function ($scope, $htt
                     },
             {
                 field: "Login",
-                displayName: "Login"
-                    }]
+                displayName: "Usuario"
+            }]
     };
     $http.get('/users/fetch').success(function (data, status, headers, config) {
         $scope.users_grid.data = data;
@@ -19,4 +19,8 @@ appControllers.controller('UserCtrl', ['$scope', '$http', function ($scope, $htt
     error(function (data, status, headers, config) {
         console.log(data, 'data users');
     });
+
+    $scope.newuser = function () {
+        $location.path('/user/form');
+    };
 }]);
