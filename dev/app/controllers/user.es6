@@ -21,7 +21,6 @@ appControllers.controller('UserCtrl', ['$scope', '$http', '$location', function 
     });
 
     $scope.newuser = function () {
-        alert(1);
         $location.path('/users/form');
     };
 }]);

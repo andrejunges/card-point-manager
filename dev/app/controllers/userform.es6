@@ -5,9 +5,17 @@ appControllers.controller('UserFormCtrl', ['$scope', '$http', '$location', funct
 
     } else {
         $http.get('user/new').success(function (data, status, headers, config) {
-            $scope.use = data;
+            $scope.user = data;
         }).error(function (data, status, headers, config) {
             //todo
         });
     }
+
+    $scope.save = function () {
+        $http.post('user/save', $scope.user).success(function (data, status) {
+            $location.path('/users');
+        }).error(function (err, status) {
+            //todo
+        });
+    };
 }]);
