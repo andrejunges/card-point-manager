@@ -1,6 +1,3 @@
-'use strict';
-
-var marked0$0 = [json_get_employees].map(regeneratorRuntime.mark);
 exports.install = function () {
     framework.route('/employee/new', json_get_new_employee, ['authorize']);
     framework.route('/employees/fetch', json_get_employees, ['authorize']);
@@ -25,25 +22,12 @@ function view_employees() {
 	Output: JSON
 */
 
-function json_get_employees() {
-    var self, employeeSchema, emploees;
-    return regeneratorRuntime.wrap(function json_get_employees$(context$1$0) {
-        while (1) switch (context$1$0.prev = context$1$0.next) {
-            case 0:
-                self = this, employeeSchema = MODEL('employee').Schema;
-                context$1$0.next = 3;
-                return sync(global.genFind.call(employeeSchema))();
-
-            case 3:
-                emploees = context$1$0.sent;
-
-                self.json(emploees);
-
-            case 5:
-            case 'end':
-                return context$1$0.stop();
-        }
-    }, marked0$0[0], this);
+function* json_get_employees() {
+    var self = this,
+        employeeSchema = MODEL('employee').Schema;
+    var emploees =
+        yield sync(global.genFind.call(employeeSchema))();
+    self.json(emploees);
 }
 
 /*

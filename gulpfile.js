@@ -60,7 +60,7 @@ gulp.task('build', function () {
         .pipe(sass())
         .pipe(gulp.dest('dev'));
 
-    gulp.src('src/**/*es6')
+    gulp.src(['src/**/*es6', '!src/controllers'])
         .pipe(gulpBabel({
             externalHelpers: true
         }))
@@ -79,6 +79,7 @@ gulp.task('build', function () {
         }))
         .pipe(gulp.dest('dev/app/controllers'));
 
+    gulp.src('src/controllers/**').pipe(gulp.dest('dev/controllers'));
     gulp.src('src/views/**').pipe(gulp.dest('dev/views'));
     gulp.src('src/app/img/**').pipe(gulp.dest('dev/app/img'));
     gulp.src(['src/public/**', '!src/public/react-ui']).pipe(gulp.dest('dev/public'));

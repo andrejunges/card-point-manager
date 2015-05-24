@@ -1,6 +1,3 @@
-'use strict';
-
-var marked0$0 = [json_get_users].map(regeneratorRuntime.mark);
 exports.install = function () {
     framework.route('/user/new', json_get_new_user, ['authorize']);
     framework.route('/user/save', json_save_user, ['authorize', 'json']);
@@ -44,25 +41,12 @@ function view_user_form() {
 	Output: JSON
 */
 
-function json_get_users() {
-    var self, UserSchema, users;
-    return regeneratorRuntime.wrap(function json_get_users$(context$1$0) {
-        while (1) switch (context$1$0.prev = context$1$0.next) {
-            case 0:
-                self = this, UserSchema = MODEL('user').Schema;
-                context$1$0.next = 3;
-                return sync(global.genFind.call(UserSchema))();
-
-            case 3:
-                users = context$1$0.sent;
-
-                self.json(users);
-
-            case 5:
-            case 'end':
-                return context$1$0.stop();
-        }
-    }, marked0$0[0], this);
+function* json_get_users() {
+    var self = this,
+        UserSchema = MODEL('user').Schema;
+    var users =
+        yield sync(global.genFind.call(UserSchema))();
+    self.json(users);
 }
 
 /*
@@ -77,7 +61,9 @@ function json_get_user(id) {
     UserSchema.find({
         _id: id
     }, function (err, doc) {
-        if (err) {}
+        if (err) {
+            //todo
+        }
         self.json(doc);
     });
 }
@@ -122,5 +108,3 @@ function json_save_user() {
         });
     });
 };
-
-//todo
