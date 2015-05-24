@@ -10,8 +10,11 @@ var gulp = require('gulp'),
     gulpFilter = require('gulp-filter'),
     mainBowerFiles = require('main-bower-files'),
     react = require('gulp-react'),
-    browserify = require('gulp-browserify'),
-    nodemon = require('gulp-nodemon');
+    browserify = require('browserify'),
+    nodemon = require('gulp-nodemon'),
+    livereload = require('gulp-livereload'),
+    source = require('vinyl-source-stream'),
+    gulpif = require('gulp-if');
 
 gulp.task("clean", function () {
     return rimraf.sync('prod/**');
@@ -54,39 +57,29 @@ gulp.task('bassets', function () {
         .pipe(gulp.dest(dest + 'css'));
 });
 
-gulp.task('build', function () {
-
-    gulp.src('src/**/*.scss')
-        .pipe(sass())
-        .pipe(gulp.dest('dev'));
-
-    gulp.src(['src/**/*es6', '!src/controllers'])
-        .pipe(gulpBabel({
-            externalHelpers: true
-        }))
-        .pipe(gulp.dest('dev'));
-
-    //compile jsx to js
-    gulp.src('src/public/react-ui/**')
-        .pipe(react())
-        .pipe(gulp.dest('dev/public/react-ui'));
-
+gulp.task('bundle', function () {
     //entry point
-    gulp.src('dev/app/controllers/entry.js')
-        .pipe(browserify({
-            insertGlobals: false,
-            debug: false
-        }))
+    var b = browserify(['./dev/app/controllers/entry.js']);
+    return b.bundle()
+        .pipe(source('bundle.js'))
         .pipe(gulp.dest('dev/app/controllers'));
+});
 
-    gulp.src('src/controllers/**').pipe(gulp.dest('dev/controllers'));
-    gulp.src('src/views/**').pipe(gulp.dest('dev/views'));
-    gulp.src('src/app/img/**').pipe(gulp.dest('dev/app/img'));
-    gulp.src(['src/public/**', '!src/public/react-ui']).pipe(gulp.dest('dev/public'));
+gulp.task('build', function () {
+    return gulp.src(['src/**', '!src/controllers'])
+        .pipe(gulpif(/[.]scss$/, sass()))
+        .pipe(gulpif(/[.]es6$/, gulpBabel({
+            externalHelpers: true
+        })))
+        .pipe(gulpif(/[.]jsx$/, react()))
+        .pipe(gulp.dest('dev'))
+        .pipe(livereload());
 });
 
 gulp.task('development', ['bassets', 'build'], function () {
+    livereload.listen();
     gulp.watch('src/**', ['bassets', 'build']);
+    gulp.watch('dev/app/controllers/entry.js', ['bundle'])
 });
 
 var env = process.env.NODE_ENV || 'development';
