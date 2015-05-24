@@ -1,7 +1,7 @@
-'use strict';
+"use strict";
 //probably gonna nedd some changes
-var mongoose = require('mongoose');
-var typeDepartamentSchema = mongoose.Schema({
+let mongoose = require('mongoose');
+let typeDepartamentSchema = mongoose.Schema({
     _id: Number,
     Description: String
 });

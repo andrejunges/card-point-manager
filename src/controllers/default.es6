@@ -1,5 +1,3 @@
-'use strict';
-
 exports.install = function () {
   framework.route('/', view_logged, ['authorize']);
   framework.route('/', view_log_in);
@@ -8,6 +6,7 @@ exports.install = function () {
   framework.route('/home', view_home, ['authorize']);
 };
 var password = require('password-hash-and-salt');
+
 
 function view_logged() {
   var self = this;
@@ -29,9 +28,9 @@ function view_log_in() {
 
 function json_homepage() {
   var self = this,
-      user = self.post.LoginName,
-      pw = self.post.LoginPassword,
-      UserSchema = MODEL('user').Schema;
+    user = self.post.LoginName,
+    pw = self.post.LoginPassword,
+    UserSchema = MODEL('user').Schema;
 
   UserSchema.find({
     Login: user
@@ -45,8 +44,8 @@ function json_homepage() {
         }, 'user'), new Date().add('h', 1));
         self.redirect('/');
       }
-    });
-  });
+    })
+  })
 }
 
 function logout() {

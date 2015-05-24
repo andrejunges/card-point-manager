@@ -1,6 +1,6 @@
-'use strict';
-var mongoose = require('mongoose');
-var movimentationSchema = mongoose.Schema({
+"use strict";
+let mongoose = require('mongoose');
+let movimentationSchema = mongoose.Schema({
     Entry: Date,
     Exit: Date,
     Period: String,

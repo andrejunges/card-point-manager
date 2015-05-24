@@ -1,7 +1,7 @@
-'use strict';
+"use strict";
 //probably gonna nedd some changes
-var mongoose = require('mongoose');
-var configSchema = mongoose.Schema({
+let mongoose = require('mongoose');
+let configSchema = mongoose.Schema({
     DefaultEntry: Date,
     DefaultExit: Date,
     Period: String

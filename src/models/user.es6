@@ -1,5 +1,3 @@
-'use strict';
-
 var mongoose = require('mongoose');
 var userSchema = mongoose.Schema({
     Name: String,
@@ -8,7 +6,7 @@ var userSchema = mongoose.Schema({
     Email: String,
     Created: {
         type: Date,
-        'default': Date.now
+        default: Date.now
     }
 });
 

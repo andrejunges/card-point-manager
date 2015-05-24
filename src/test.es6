@@ -4,8 +4,6 @@
 // http://www.totaljs.com
 // ===================================================
 
-'use strict';
-
 var fs = require('fs');
 var options = {};
 

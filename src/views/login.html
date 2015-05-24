@@ -1,0 +1,36 @@
+<section class="login-section">
+    <div>
+        <form action="" method="POST" id="f">
+            <div class="form-group">
+                <label for="LoginName">Usuário:</label>
+                <input type="text" id="LoginName" class="form-control" name="LoginName" value="@{model.LoginName}" maxlength="200" />
+            </div>
+            <div class="form-group">
+                <label for="LoginPassword">Senha:</label>
+                <input id="LoginPassword" class="form-control" type="password" name="LoginPassword" value="" maxlength="30" />
+            </div>
+            <div id="error"></div>
+        </form>
+        <button class="btn btn-success" id="loginButton">Entrar</button>
+    </div>
+</section>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#loginButton').on('click', function () {
+            $.post('/?ts=' + new Date().getTime(), $('#f').serialize(), function (d) {
+                var err = $('#error');
+                if (d instanceof Array) {
+                    err.empty();
+                    d.forEach(function (o) {
+                        err.append('<div>' + o.error + '</div>');
+                    });
+                    err.show();
+                    return;
+                };
+                err.hide();
+                window.location.href = '/';
+            });
+        });
+    });
+</script>

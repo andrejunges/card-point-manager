@@ -2,8 +2,6 @@
 // AUTHORIZATION
 // ================================================
 
-'use strict';
-
 framework.onAuthorization = function (req, res, flags, callback) {
     var self = this,
         cookie = req.cookie(self.config.cookie);
@@ -41,6 +39,7 @@ framework.onAuthorization = function (req, res, flags, callback) {
     });
 };
 
+
 framework.onValidation = function (name, value) {
     switch (name) {
         case 'LoginName':
@@ -48,4 +47,4 @@ framework.onValidation = function (name, value) {
         case 'LoginPassword':
             return value.length > 0;
     };
-};
+}

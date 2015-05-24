@@ -1,5 +1,3 @@
-'use strict';
-
 var mongoose = require('mongoose');
 mongoose.connect(framework.config.database);
 global.genFind = function () {

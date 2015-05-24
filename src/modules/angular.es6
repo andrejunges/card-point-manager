@@ -2,8 +2,6 @@
 // Copyright Peter Širka <petersirka@gmail.com>
 // Version 1.01
 
-'use strict';
-
 exports.name = 'angular.js';
 exports.version = '1.01';
 exports.options = {
@@ -34,34 +32,44 @@ exports.install = function (framework, options) {
 
         var length = arguments.length;
         if (length > 1) {
-            for (var i = 0; i < length; i++) framework.helpers.ng.call(self, arguments[i]);
+            for (var i = 0; i < length; i++)
+                framework.helpers.ng.call(self, arguments[i]);
             return '';
         }
 
         if (name instanceof Array) {
             length = name.length;
-            for (var i = 0; i < length; i++) framework.helpers.ng.call(self, name[i]);
+            for (var i = 0; i < length; i++)
+                framework.helpers.ng.call(self, name[i]);
             return '';
         }
 
         var isCommon = name[0] === '~';
 
-        if (isCommon) name = name.substring(1);
+        if (isCommon)
+            name = name.substring(1);
 
-        if (name === undefined) name = 'angular';
+        if (name === undefined)
+            name = 'angular';
 
-        if (name === 'core' || name === '' || name === 'base' || name === 'main') name = 'angular';
+        if (name === 'core' || name === '' || name === 'base' || name === 'main')
+            name = 'angular';
 
-        if (name !== 'angular' && name.indexOf('angular-') === -1) name = 'angular-' + name;
+        if (name !== 'angular' && name.indexOf('angular-') === -1)
+            name = 'angular-' + name;
 
         var output = self.repository[REPOSITORY_ANGULAR] || '';
-        var script = $script_create(isCommon ? '/common/' + name + '.min.js' : '//cdnjs.cloudflare.com/ajax/libs/angular.js/' + exports.options['angular-version'] + '/' + name + '.min.js');
+        var script = $script_create((isCommon ? '/common/' + name + '.min.js' : '//cdnjs.cloudflare.com/ajax/libs/angular.js/' + exports.options['angular-version'] + '/' + name + '.min.js'));
 
-        if (name === 'angular') output = script + output;else output += script;
+        if (name === 'angular')
+            output = script + output;
+        else
+            output += script;
 
         self.repository[REPOSITORY_ANGULAR] = output;
         return '';
     };
+
 
     framework.helpers.ngCommon = function (name) {
 
@@ -69,19 +77,22 @@ exports.install = function (framework, options) {
         var length = arguments.length;
 
         if (length > 1) {
-            for (var i = 0; i < length; i++) framework.helpers.call(self, arguments[i]);
+            for (var i = 0; i < length; i++)
+                framework.helpers.call(self, arguments[i]);
             return '';
         }
 
         if (name instanceof Array) {
             length = name.length;
-            for (var i = 0; i < length; i++) framework.helpers.ngCommon.call(self, name[i]);
+            for (var i = 0; i < length; i++)
+                framework.helpers.ngCommon.call(self, name[i]);
             return '';
         }
 
         var output = self.repository[REPOSITORY_ANGULAR_COMMON] || '';
 
-        if (name.lastIndexOf(EXTENSION_JS) === -1) name += EXTENSION_JS;
+        if (name.lastIndexOf(EXTENSION_JS) === -1)
+            name += EXTENSION_JS;
 
         var script = $script_create('/common/' + name);
         output += script;
@@ -96,13 +107,15 @@ exports.install = function (framework, options) {
         var length = arguments.length;
 
         if (length > 2) {
-            for (var i = 1; i < length; i++) framework.helpers.ngLocale.call(self, arguments[i]);
+            for (var i = 1; i < length; i++)
+                framework.helpers.ngLocale.call(self, arguments[i]);
             return '';
         }
 
         if (name instanceof Array) {
             length = name.length;
-            for (var i = 0; i < length; i++) framework.helpers.ngLocale.call(self, name[i]);
+            for (var i = 0; i < length; i++)
+                framework.helpers.ngLocale.call(self, name[i]);
             return '';
         }
 
@@ -110,11 +123,14 @@ exports.install = function (framework, options) {
         var isLocal = name[0] === '~';
         var extension = '';
 
-        if (isLocal) name = name.substring(1);
+        if (isLocal)
+            name = name.substring(1);
 
-        if (name.indexOf('angular-locale_') !== -1) name = name.replace('angular-locale_', '');
+        if (name.indexOf('angular-locale_') !== -1)
+            name = name.replace('angular-locale_', '');
 
-        if (name.lastIndexOf(EXTENSION_JS) === -1) extension = EXTENSION_JS;
+        if (name.lastIndexOf(EXTENSION_JS) === -1)
+            extension = EXTENSION_JS;
 
         output += $script_create(isLocal ? '/i18n/angular-locale_' + name + extension : '//cdnjs.cloudflare.com/ajax/libs/angular.js/' + exports.options['angular-i18n-version'] + '/i18n/angular-locale_' + name + extension);
         self.repository[REPOSITORY_ANGULAR_LOCALE] = output;
@@ -133,22 +149,26 @@ exports.install = function (framework, options) {
 
         var length = arguments.length;
         if (length > 1) {
-            for (var i = 0; i < length; i++) framework.helpers.ngController.call(self, arguments[i]);
+            for (var i = 0; i < length; i++)
+                framework.helpers.ngController.call(self, arguments[i]);
             return '';
         }
 
         if (name instanceof Array) {
             length = name.length;
-            for (var i = 0; i < length; i++) framework.helpers.ngController.call(self, name[i]);
+            for (var i = 0; i < length; i++)
+                framework.helpers.ngController.call(self, name[i]);
             return '';
         }
 
-        if (name.lastIndexOf(EXTENSION_JS) === -1) name += EXTENSION_JS;
+        if (name.lastIndexOf(EXTENSION_JS) === -1)
+            name += EXTENSION_JS;
 
         var output = self.repository[REPOSITORY_ANGULAR_CONTROLLER] || '';
         var isLocal = name[0] === '~';
 
-        if (isLocal) name = name.substring(1);
+        if (isLocal)
+            name = name.substring(1);
 
         output += $script_create('/controllers/' + name);
 
@@ -166,11 +186,16 @@ exports.install = function (framework, options) {
 
         var self = this;
 
-        if (id === undefined) id = name;
+        if (id === undefined)
+            id = name;
 
-        if (name.lastIndexOf('.html') === -1) name += '.html';
+        if (name.lastIndexOf('.html') === -1)
+            name += '.html';
 
-        if (name[0] === '~') name = name.substring(1);else if (name[1] !== '/') name = '/templates/' + name;
+        if (name[0] === '~')
+            name = name.substring(1);
+        else if (name[1] !== '/')
+            name = '/templates/' + name;
 
         var key = 'ng-' + name;
         var tmp = framework.temporary.views[key];
@@ -178,9 +203,13 @@ exports.install = function (framework, options) {
         if (tmp === undefined) {
             var filename = utils.combine(self.config['directory-public-virtual'], name);
 
-            if (fs.existsSync(filename)) tmp = fs.readFileSync(filename).toString('utf8');else tmp = '';
+            if (fs.existsSync(filename))
+                tmp = fs.readFileSync(filename).toString('utf8');
+            else
+                tmp = '';
 
-            if (!self.isDebug) framework.temporary.views[key] = tmp;
+            if (!self.isDebug)
+                framework.temporary.views[key] = tmp;
         }
 
         return '<script type="text/ng-template" id="' + id + '">' + tmp + '</script>';
@@ -197,22 +226,26 @@ exports.install = function (framework, options) {
 
         var length = arguments.length;
         if (length > 1) {
-            for (var i = 0; i < length; i++) framework.helpers.ngDirective.call(self, arguments[i]);
+            for (var i = 0; i < length; i++)
+                framework.helpers.ngDirective.call(self, arguments[i]);
             return '';
         }
 
         if (name instanceof Array) {
             length = name.length;
-            for (var i = 0; i < length; i++) framework.helpers.ngDirective.call(self, name[i]);
+            for (var i = 0; i < length; i++)
+                framework.helpers.ngDirective.call(self, name[i]);
             return '';
         }
 
-        if (name.lastIndexOf(EXTENSION_JS) === -1) name += EXTENSION_JS;
+        if (name.lastIndexOf(EXTENSION_JS) === -1)
+            name += EXTENSION_JS;
 
         var output = self.repository[REPOSITORY_ANGULAR_OTHER] || '';
         var isLocal = name[0] === '~';
 
-        if (isLocal) name = name.substring(1);
+        if (isLocal)
+            name = name.substring(1);
 
         output += $script_create('/directives/' + name);
         self.repository[REPOSITORY_ANGULAR_OTHER] = output;
@@ -230,17 +263,20 @@ exports.install = function (framework, options) {
         var length = arguments.length;
 
         if (length > 1) {
-            for (var i = 0; i < length; i++) framework.helpers.ngStyle.call(self, arguments[i]);
+            for (var i = 0; i < length; i++)
+                framework.helpers.ngStyle.call(self, arguments[i]);
             return '';
         }
 
         if (name instanceof Array) {
             length = name.length;
-            for (var i = 0; i < length; i++) framework.helpers.ngStyle.call(self, name[i]);
+            for (var i = 0; i < length; i++)
+                framework.helpers.ngStyle.call(self, name[i]);
             return '';
         }
 
-        if (name.lastIndexOf('.css') === -1) name += '.css';
+        if (name.lastIndexOf('.css') === -1)
+            name += '.css';
 
         self.head(name);
         return '';
@@ -257,22 +293,26 @@ exports.install = function (framework, options) {
 
         var length = arguments.length;
         if (length > 1) {
-            for (var i = 0; i < length; i++) framework.helpers.ngService.call(self, arguments[i]);
+            for (var i = 0; i < length; i++)
+                framework.helpers.ngService.call(self, arguments[i]);
             return '';
         }
 
         if (name instanceof Array) {
             length = name.length;
-            for (var i = 0; i < length; i++) framework.helpers.ngService.call(self, name[i]);
+            for (var i = 0; i < length; i++)
+                framework.helpers.ngService.call(self, name[i]);
             return '';
         }
 
-        if (name.lastIndexOf(EXTENSION_JS) === -1) name += EXTENSION_JS;
+        if (name.lastIndexOf(EXTENSION_JS) === -1)
+            name += EXTENSION_JS;
 
         var output = self.repository[REPOSITORY_ANGULAR_OTHER] || '';
         var isLocal = name[0] === '~';
 
-        if (isLocal) name = name.substring(1);
+        if (isLocal)
+            name = name.substring(1);
 
         output += $script_create('/services/' + name);
         self.repository[REPOSITORY_ANGULAR_OTHER] = output;
@@ -291,22 +331,26 @@ exports.install = function (framework, options) {
 
         var length = arguments.length;
         if (length > 1) {
-            for (var i = 0; i < length; i++) framework.helpers.ngFilter.call(self, arguments[i]);
+            for (var i = 0; i < length; i++)
+                framework.helpers.ngFilter.call(self, arguments[i]);
             return '';
         }
 
         if (name instanceof Array) {
             length = name.length;
-            for (var i = 0; i < length; i++) framework.helpers.ngFilter.call(self, name[i]);
+            for (var i = 0; i < length; i++)
+                framework.helpers.ngFilter.call(self, name[i]);
             return '';
         }
 
-        if (name.lastIndexOf(EXTENSION_JS) === -1) name += EXTENSION_JS;
+        if (name.lastIndexOf(EXTENSION_JS) === -1)
+            name += EXTENSION_JS;
 
         var output = self.repository[REPOSITORY_ANGULAR_OTHER] || '';
         var isLocal = name[0] === '~';
 
-        if (isLocal) name = name.substring(1);
+        if (isLocal)
+            name = name.substring(1);
 
         output += $script_create('/filters/' + name);
         self.repository[REPOSITORY_ANGULAR_OTHER] = output;
@@ -325,22 +369,26 @@ exports.install = function (framework, options) {
 
         var length = arguments.length;
         if (length > 1) {
-            for (var i = 0; i < length; i++) framework.helpers.ngResource.call(self, arguments[i]);
+            for (var i = 0; i < length; i++)
+                framework.helpers.ngResource.call(self, arguments[i]);
             return '';
         }
 
         if (name instanceof Array) {
             length = name.length;
-            for (var i = 0; i < length; i++) framework.helpers.ngResource.call(self, name[i]);
+            for (var i = 0; i < length; i++)
+                framework.helpers.ngResource.call(self, name[i]);
             return '';
         }
 
-        if (name.lastIndexOf(EXTENSION_JS) === -1) name += EXTENSION_JS;
+        if (name.lastIndexOf(EXTENSION_JS) === -1)
+            name += EXTENSION_JS;
 
         var output = self.repository[REPOSITORY_ANGULAR_OTHER] || '';
         var isLocal = name[0] === '~';
 
-        if (isLocal) name = name.substring(1);
+        if (isLocal)
+            name = name.substring(1);
 
         output += $script_create('/resources/' + name);
         self.repository[REPOSITORY_ANGULAR_OTHER] = output;
@@ -351,7 +399,8 @@ exports.install = function (framework, options) {
     framework.helpers.ngInclude = function (name) {
         var self = this;
 
-        if (name.lastIndexOf(EXTENSION_JS) === -1) name += EXTENSION_JS;
+        if (name.lastIndexOf(EXTENSION_JS) === -1)
+            name += EXTENSION_JS;
 
         return $script_create(name);
     };
@@ -377,7 +426,7 @@ function event_render_head(controller) {
     var self = controller;
     var angularBeg = (self.repository[REPOSITORY_ANGULAR] || '') + (self.repository[REPOSITORY_ANGULAR_COMMON] || '') + (self.repository[REPOSITORY_ANGULAR_LOCALE] || '');
     var angularEnd = (angularBeg.length > 0 ? $script_create('/app.js') : '') + (self.repository[REPOSITORY_ANGULAR_OTHER] || '') + (self.repository[REPOSITORY_ANGULAR_CONTROLLER] || '');
-    self.repository.$head += angularBeg + angularEnd;
+    self.repository['$head'] += angularBeg + angularEnd;
 }
 
 function $script_create(url) {
