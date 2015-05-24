@@ -80,6 +80,8 @@ gulp.task('build', function () {
         .pipe(gulp.dest('dev/app/controllers'));
 
     gulp.src('src/views/**').pipe(gulp.dest('dev/views'));
+    gulp.src('src/app/img/**').pipe(gulp.dest('dev/app/img'));
+    gulp.src(['src/public/**', '!src/public/react-ui']).pipe(gulp.dest('dev/public'));
 });
 
 gulp.task('development', ['bassets', 'build'], function () {
