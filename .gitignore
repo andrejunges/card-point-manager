@@ -12,6 +12,7 @@
 /.settings/
 /dev/public/js/
 /dev/public/css/
+/dev/
 
 *.map
 *.log
