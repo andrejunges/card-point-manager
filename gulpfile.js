@@ -21,7 +21,7 @@ gulp.task("clean", function () {
 });
 
 gulp.task("helpers", function () {
-    fs.writeFile('prod/js/helpers.js', babel.buildExternalHelpers(),
+    fs.writeFile('src/app/helpers.js', babel.buildExternalHelpers(),
         function (err) {
             console.log("Helper ja foi criado");
         });
@@ -59,7 +59,7 @@ gulp.task('bassets', function () {
 
 gulp.task('bundle', function () {
     //entry point
-    var b = browserify(['./dev/app/controllers/entry.js']);
+    var b = browserify(['./dev/app/angularDecorator.js','./dev/app/controllers/entry.js']);
     return b.bundle()
         .pipe(source('bundle.js'))
         .pipe(gulp.dest('dev/app/controllers'));
@@ -69,7 +69,8 @@ gulp.task('build', function () {
     return gulp.src(['src/**', '!src/controllers'])
         .pipe(gulpif(/[.]scss$/, sass()))
         .pipe(gulpif(/[.]es6$/, gulpBabel({
-            externalHelpers: true
+            externalHelpers: true,
+            stage: 0
         })))
         .pipe(gulpif(/[.]jsx$/, react()))
         .pipe(gulp.dest('dev'))

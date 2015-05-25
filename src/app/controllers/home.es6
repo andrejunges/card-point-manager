@@ -1,12 +1,20 @@
 "use strict";
-// app is defined in /app/app.js
-appControllers.controller('HomeCtrl', ['$scope', '$http', ($scope, $http) => {
-    $scope.opcoes = [{
-            caption: 'Usuarios',
-            url: '/users'
+
+@window.AngularController('appControllers')
+class HomeController {
+    name = null;
+    constructor($scope, $http) {
+        this.scope = $scope;
+        this.http = $http;
+
+        this.scope.opcoes = [{
+                caption: 'Usuarios',
+                url: '/users'
     },
-        {
-            caption: 'Funcionarios',
-            url: '/employees'
+            {
+                caption: 'Funcionarios',
+                url: '/employees'
         }];
-}]);
+    }
+
+}
