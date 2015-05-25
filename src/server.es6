@@ -1,6 +1,6 @@
 var fs = require('fs'),
   options = {},
-  env = process.env.NODE_ENV || 'development';
+  env = process.env.NODE_ENV || 'developmenta';
 
 // options.ip = '127.0.0.1';
 // options.port = parseInt(process.argv[2]);

@@ -3,10 +3,10 @@ exports.install = function () {
     framework.route('/user/save', json_save_user, ['authorize', 'json']);
 
     framework.route('/user/{id}', json_get_user, ['authorize', 'xhr', 'post']);
-    framework.route('/user/form', view_user_form, ['authorize']);
-
     framework.route('/users/fetch', json_get_users, ['authorize']);
+
     framework.route('/users', view_users, ['authorize']);
+    framework.route('/users/form', view_user_form, ['authorize']);
 };
 
 var password = require('password-hash-and-salt');

@@ -21,6 +21,7 @@
     "gulp-cli": "0.1.5",
     "gulp-filter": "^2.0.2",
     "gulp-foreach": "^0.1.0",
+    "gulp-if": "^1.2.5",
     "gulp-livereload": "^3.8.0",
     "gulp-nodemon": "^2.0.3",
     "gulp-react": "^3.0.1",
@@ -29,6 +30,7 @@
     "gulp-watch": "^4.2.4",
     "main-bower-files": "^2.7.0",
     "mongoose": "^4.0.2",
-    "rimraf": "^2.3.2"
+    "rimraf": "^2.3.2",
+    "vinyl-source-stream": "^1.1.0"
   }
 }
