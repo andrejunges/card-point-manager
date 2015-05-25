@@ -1,6 +1,5 @@
 "use strict";
-
-@window.AngularController('appControllers')
+@window.AngularController('HomeCtrl','$http')
 class HomeController {
     name = null;
     constructor($scope, $http) {
