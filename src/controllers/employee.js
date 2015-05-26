@@ -1,14 +1,10 @@
 exports.install = function () {
     framework.route('/employee/new', json_get_new_employee, ['authorize']);
+    framework.route('/employee/form', view_employee_form, ['authorize']);
     framework.route('/employees/fetch', json_get_employees, ['authorize']);
     framework.route('/employees', view_employees, ['authorize']);
 };
 
-/*
-	Description: view employees
-	Method: GET
-	Output: html
-*/
 
 function view_employees() {
     var self = this;
@@ -16,11 +12,10 @@ function view_employees() {
     self.view('employees');
 }
 
-/*
-	Description: Get employees
-	Method: GET
-	Output: JSON
-*/
+function view_employee_form() {
+    this.layout(null);
+    this.view('employee-form');
+}
 
 function* json_get_employees() {
     var self = this,
@@ -30,11 +25,6 @@ function* json_get_employees() {
     self.json(emploees);
 }
 
-/*
-	Description: Get new user
-	Method: GET
-	Output: JSON
-*/
 function json_get_new_employee() {
     var self = this;
     self.json({

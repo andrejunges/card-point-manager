@@ -7,12 +7,16 @@ class HomeController {
         this.http = $http;
 
         this.scope.opcoes = [{
-                caption: 'Usuarios',
-                url: '/users'
-    },
-            {
-                caption: 'Funcionarios',
-                url: '/employees'
+            caption: 'Usuarios',
+            url: '/users'
+        },
+        {
+            caption: 'Funcionarios',
+            url: '/employees'
+        },
+        {
+            caption: 'Departamentos',
+            url: '/departments'
         }];
     }
 }

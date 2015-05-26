@@ -19,6 +19,10 @@ app.config(['$routeProvider',
                 templateUrl: '/employees',
                 controller: 'EmployeeCtrl'
             })
+            .when('/departments/', {
+                templateUrl: '/departments',
+                controller: 'DepartmentCtrl'
+            })
             .otherwise({
                 templateUrl: '/home',
                 controller: 'HomeCtrl'

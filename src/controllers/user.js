@@ -6,7 +6,7 @@ exports.install = function () {
     framework.route('/users/fetch', json_get_users, ['authorize']);
 
     framework.route('/users', view_users, ['authorize']);
-    framework.route('/users/form', view_user_form, ['authorize']);
+    framework.route('/user/form', view_user_form, ['authorize']);
 };
 
 var password = require('password-hash-and-salt');

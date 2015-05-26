@@ -5,7 +5,7 @@ let employeeSchema = mongoose.Schema({
     Name: String,
     Department: String,
     IdentificationNumber: String,
-    _IdDepartament: Number,
+    _IdDepartment: Number,
 });
 exports.name = 'employee';
 exports.Schema = mongoose.model('Employee', employeeSchema);

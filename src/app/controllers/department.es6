@@ -1,26 +1,36 @@
-// app is defined in /app/app.js
-appControllers.controller('DepartmentCtrl', ['$scope', '$http', '$location', function ($scope, $http, $location) {
-    $scope.departments_grid = {
-        data: [],
-        height: 'auto',
-        columnDefs: [
-            {
-                field: "_id",
-                displayName: "id"
-            },
-            {
-                field: "Description",
-                displayName: "Description"
-            }]
-    };
-    $http.get('/departments/fetch').success(function (data, status, headers, config) {
-        $scope.departments_grid.data = data;
-    }).
-    error(function (data, status, headers, config) {
-        console.log(data, 'data users');
-    });
+"use strict";
+@window.AngularController('DepartmentCtrl', '$http', '$location')
+class DepartmentController {
+    name = null;
+    constructor($scope, $http, $location) {
+        this.scope = $scope;
+        this.http = $http;
+        this.location = $location;
 
-    $scope.newDepartment = function () {
-        $location.path('/deparment/form');
-    };
-}]);
+        this.scope.departments_grid = {
+            data: [],
+            height: 'auto',
+            columnDefs: [
+                {
+                    field: "_id",
+                    displayName: "id"
+                },
+                {
+                    field: "Description",
+                    displayName: "Description"
+                }]
+        };
+
+        this.scope.newDepartment = function () {
+            this.location.path('/deparment/form');
+        };
+
+        this.http.get('/departments/fetch')
+            .success(function (data, status, headers, config) {
+                $scope.departments_grid.data = data;
+            })
+            .error(function (data, status, headers, config) {
+                console.log(data, 'data users');
+            });
+    }
+}

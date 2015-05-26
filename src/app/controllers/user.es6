@@ -1,26 +1,36 @@
-// app is defined in /app/app.js
-appControllers.controller('UserCtrl', ['$scope', '$http', '$location', function ($scope, $http, $location) {
-    $scope.users_grid = {
-        data: [],
-        height: 'auto',
-        columnDefs: [
-            {
-                field: "Name",
-                displayName: "Nome"
-                    },
-            {
-                field: "Login",
-                displayName: "Usuario"
-            }]
-    };
-    $http.get('/users/fetch').success(function (data, status, headers, config) {
-        $scope.users_grid.data = data;
-    }).
-    error(function (data, status, headers, config) {
-        console.log(data, 'data users');
-    });
+"use strict";
+@window.AngularController('UserCtrl', '$http', '$location')
+class UserController {
+    name = null;
+    constructor($scope, $http, $location) {
+        this.scope = $scope;
+        this.http = $http;
+        this.location = $location;
 
-    $scope.newuser = function () {
-        $location.path('/user/form');
-    };
-}]);
+        this.scope.newUser = function () {
+            this.location.path('/user/form');
+        };
+
+        this.scope.users_grid = {
+            data: [],
+            height: 'auto',
+            columnDefs: [
+                {
+                    field: "Name",
+                    displayName: "Nome"
+                        },
+                {
+                    field: "Login",
+                    displayName: "Usuario"
+                }]
+        };
+
+        this.http.get('/users/fetch')
+            .success(function (data, status, headers, config) {
+                $scope.users_grid.data = data;
+            })
+            .error(function (data, status, headers, config) {
+                console.log(data, 'data users');
+            });
+    }
+}
