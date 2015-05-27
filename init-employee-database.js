@@ -10,7 +10,7 @@ db.once('open', function (callback) {
     var employeeModel = mongoose.model('Employee', userSchema);
 
     for(var i = 0; i< 20; i++){
-        var mockID ='23043232' + i;
+        var mockID = '23043232' + i;
         var employee = new employeeModel({
             _id: mockID,
             _IdDepartament: 1,
@@ -19,6 +19,7 @@ db.once('open', function (callback) {
         });
         employee.save(function (err) {
             if (err) {
+                console.log(err);
                 throw new Error('Opps something went terribly wrong we can save a employee!');
             }
         });

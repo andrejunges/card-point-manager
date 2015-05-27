@@ -2,6 +2,7 @@
 //probably gonna nedd some changes
 let mongoose = require('mongoose');
 let employeeSchema = mongoose.Schema({
+    _id: String,
     Name: String,
     Department: String,
     IdentificationNumber: String,

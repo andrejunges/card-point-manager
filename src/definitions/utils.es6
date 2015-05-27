@@ -13,4 +13,5 @@ utils.getLastDayMonth = function() {
     return aux;
 }
 
+exports.UtilsCpm = utils;
 global.UtilsCpm = utils;
