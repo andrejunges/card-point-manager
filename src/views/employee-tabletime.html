@@ -1,8 +1,22 @@
-<section>
-    <div class="input-group clockpicker" data-align="top" data-autoclose="true">
-        <input type="text" class="form-control" value="09:30">
+<section class="row">
+    <div ng-repeat="movimentation in movimentations" class="">
+      <div class="col-md-4">{{movimentation.Entry.getDate()}}</div>
+      <div class="col-md-4">{{movimentation.Entry.getHours()}}</div>
+      <div class="col-md-4">{{movimentation.Exit.getHours()}}</div>
+
+<!--
+      <div class="input-group clockpicker" data-align="top" data-autoclose="true">
+        <input type="text" class="form-control" value="{{movimentation.DefaultEntry}}">
         <span class="input-group-addon">
             <span class="glyphicon glyphicon-time"></span>
         </span>
+      </div>
+      <div class="input-group clockpicker" data-align="top" data-autoclose="true">
+        <input type="text" class="form-control" value="{{movimentation.DefaultExit}}">
+        <span class="input-group-addon">
+            <span class="glyphicon glyphicon-time"></span>
+        </span>
+      </div>
+-->
     </div>
 </section>

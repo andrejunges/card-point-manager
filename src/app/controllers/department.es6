@@ -1,7 +1,6 @@
 "use strict";
 @window.AngularController('DepartmentCtrl', '$http', '$location')
 class DepartmentController {
-    name = null;
     constructor($scope, $http, $location) {
         this.scope = $scope;
         this.http = $http;

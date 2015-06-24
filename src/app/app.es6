@@ -11,9 +11,9 @@ app.config(['$routeProvider',
                 templateUrl: 'user/form',
                 controller: 'UserFormCtrl'
             })
-            .when('/employee/tabletime', {
-                templateUrl: '/employee/tabletime',
-                controller: 'EmployeeTableTime'
+            .when('/employees/:idEmployee/tabletime', {
+                templateUrl: '/employees/2304323215/tabletime',
+                controller: 'EmployeeTableTimeCtrl'
             })
             .when('/employees/', {
                 templateUrl: '/employees',
